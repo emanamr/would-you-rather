@@ -1,0 +1,70 @@
+@import "~bootstrap/scss/bootstrap";
+
+$border:1px solid #444;
+$lightcolor:	#f7eafb;
+
+@mixin centered ($w){
+  width:$w;
+  margin:auto;
+}
+@mixin round-board ($w){
+  width: $w;
+  height: $w;
+  
+  border-radius:50%;
+}
+
+@mixin circle($w){
+  @include round-board($w);
+  background-color: $lightcolor;
+}
+@mixin flat ($color , $bg_color, $w){
+  background-color: $bg_color;
+  color: $color;
+  width:$w;
+  &:hover{
+    background-color:$lightcolor;
+  }
+}
+@mixin align($position) {
+  display: flex;
+  align-items: $position;
+}
+@mixin line-vertical($h){
+    border-left: 1px solid #aaa;
+    height: $h;
+}
+
+@mixin reset-list {
+  list-style: none;
+
+}
+.btn-flat{
+  @include flat(white , purple, 100%);
+}
+
+.card{
+@include centered(60%);
+}
+.cardIn{
+  @include centered(90%);
+}
+.center{
+  @include centered(20%);
+}
+.round{
+  @include circle(8.5rem);
+}
+.round-small{
+  @include circle(3rem);
+}
+.round-xsmall{
+  @include circle(2rem);
+}
+
+ol,ul {
+  @include reset-list;
+}
+.tab-flat{
+  @include flat(rgba(218, 74, 218, 0.555) ,white ,40%);
+}
