@@ -5,7 +5,7 @@ import { connect } from "react-redux";
 import { ListGroup } from "react-bootstrap";
 
 import QuestionPage from "./QuesPage.js";
-//import QuestionUnanswer from "./QuesUnanswer.js";
+
 
 class Home extends Component {
   state = {

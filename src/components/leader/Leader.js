@@ -18,4 +18,4 @@ function mapStateToProps({ users }) {
     userIds: Object.keys(users)
   };
 }
-export default connect(mapStateToProps)(Leader);
+export default withRouter(connect(mapStateToProps)(Leader));

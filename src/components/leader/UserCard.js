@@ -9,14 +9,14 @@ import {Table, Card} from "react-bootstrap";
 
 class UserCard extends Component {
   render() {
-    const { boardusers, userIds } = this.props;
+    const { boardusers, userIds ,users} = this.props;
 
     return (
       <div>
         <Container>
           <ol>
-            {boardusers.map((users) => (
-              <li key={users.id}>
+            {boardusers.map((user) => (
+              <li key={user.id}>
                 <Card>
                   <Table>
                     <tbody>
@@ -24,25 +24,25 @@ class UserCard extends Component {
                         <td></td>
                         <td colSpan="5">
                           <p>
-                            <strong>{users.name}</strong>
+                            <strong>{user.name}</strong>
                           </p>
                         </td>
                       </tr>
                       <tr>
                         <td rowSpan="2">
                           <div className="">
-                            <img alt="" src={users.avatarURL} className="" />
+                            <img alt="" src={user.avatarURL} className="" />
                           </div>
                         </td>
                         <td colSpan="2">
                           <p>created questions: </p>
                         </td>
                         <td>
-                          <p>{users.userquestions}</p>
+                          <p>{user.userquestions}</p>
                         </td>
                         <td rowSpan="2">
                           <div>
-                            Score :<span> {users.userscore}</span>
+                            Score :<span> {user.userscore}</span>
                           </div>
                         </td>
                       </tr>
@@ -51,7 +51,7 @@ class UserCard extends Component {
                           <p>answered questions:</p>
                         </td>
                         <td>
-                          <p>{users.useranswers}</p>
+                          <p>{user.useranswers}</p>
                         </td>
                       </tr>
                     </tbody>

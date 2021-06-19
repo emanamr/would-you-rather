@@ -68,3 +68,14 @@ ol,ul {
 .tab-flat{
   @include flat(rgba(218, 74, 218, 0.555) ,white ,40%);
 }
+.navbar-link .link{
+    text-decoration-line: none !important;
+    color:#6f42c1;
+    font-size: 20px;
+    padding: 1.5rem;
+     &:hover{
+    background-color:$lightcolor;
+    
+  }
+    
+}

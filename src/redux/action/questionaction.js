@@ -1,5 +1,6 @@
 import { ADD_NEW_QUESTION, ANSWERED_QUESTION, SHOW_QUESTIONS } from "./actions";
 import { formatQuestion } from "../../Utils/_DATA";
+import { _saveQuestion, _saveQuestionAnswer } from "../../Utils/_DATA"
 
 export function showQuestions(questions) {
   return {
@@ -7,10 +8,10 @@ export function showQuestions(questions) {
     questions
   };
 }
-export function addNewQuestion(question) {
+export function addNewQuestion( question) {
   return {
     type: ADD_NEW_QUESTION,
-    payload:question
+    payload: question
   };
 }
 
@@ -24,6 +25,18 @@ function generateUID () {
   return Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15)
 }
 
+
+export function handleSubmitAnswer(data){
+  debugger
+  return (dispatch) => {
+      dispatch(AnsweredQuestion(data))
+      return _saveQuestionAnswer(data)
+      .then(res => {})
+      .catch((e) =>{
+        dispatch(AnsweredQuestion(data))
+      })
+  }
+}
 /*export function handleCreateQuestion(optionOneText, optionTwoText) {
   return function (dispatch, getState) {
    const author = getState().authUser;

@@ -1,6 +1,6 @@
 import avater2 from "../css/images/avater2.png";
 import avater1 from "../css/images/avater1.png";
-
+import avater3 from "../css/images/avater3.png";
 let users = {
   sarahedo: {
     id: "sarahedo",
@@ -17,7 +17,7 @@ let users = {
   tylermcginnis: {
     id: "tylermcginnis",
     name: "Tyler McGinnis",
-    avatarURL: "../../images/tyler.jpg",
+    avatarURL: avater3,
     answers: {
       vthrdm985a262al8qx3do: "optionOne",
       xj352vofupe1dqz9emx13r: "optionTwo"

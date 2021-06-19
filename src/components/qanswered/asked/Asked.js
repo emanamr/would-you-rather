@@ -8,25 +8,28 @@ import { addAnswerToUser } from "../../../redux/action/useractions";
 import { handleSaveAnswer} from '../../../redux/action/showactions';
 class Asked extends Component {
     state = {
-    optionSelect: ""
+    optionSelect: "",
+    option:""
   };
 
   handleOptionSelect = (e) => {
     this.setState({
-      optionSelect: e.target.value
+      optionSelect: e.target.value,
+      option:e.target.id
     });
-    console.log("o", e.target.value);
+    console.log(this.state);
   };
   
   handleSubmit = (e) => {
     e.preventDefault();
-    const { authUser, queId, question, handleSaveUserAnswer } = this.props;
-    const { optionSelect } = this.state;
-	handleSaveUserAnswer({
+    const { authUser, queId, question, handleSaveUserAnswer,dispatch } = this.props;
+    const { optionSelect, option} = this.state;
+	/*handleSaveUserAnswer({
       authUser,
       queId,
-      answer:optionSelect
-    })
+      answer
+    })*/
+    dispatch(AnsweredQuestion({ authUser, queId, answer:option}))
    /* dispatch(
       AnsweredQuestion({
         authUser,
@@ -76,7 +79,7 @@ class Asked extends Component {
                 label={optionOne}
                 name="group1"
                 type="radio"
-                id={`inline-radio-1`}
+                id='optionOne'
                 value={optionOne}
                 onClick={this.handleOptionSelect}
               />
@@ -87,7 +90,7 @@ class Asked extends Component {
                 label={optionTwo}
                 name="group1"
                 type="radio"
-                id={`inline-radio-2`}
+                id='optionTwo'
                 value={optionTwo}
                 onClick={this.handleOptionSelect}
               />
@@ -143,11 +146,11 @@ function mapStateToProps(
   return {authUser, queId, name, avatarURL, optionOne, optionTwo };
 }
 
-function mapDispatchToProps(dispatch) {
+/*function mapDispatchToProps(dispatch) {
   return {
     handleSaveUserAnswer({ authUser, queId, answer }) {
       dispatch( handleSaveAnswer({ authUser, queId, answer }));
     }
   };
-}
-export default connect(mapStateToProps , mapDispatchToProps)(Asked);
+}*/
+export default connect(mapStateToProps)(Asked);

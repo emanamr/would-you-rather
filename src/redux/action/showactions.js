@@ -5,7 +5,7 @@ import {
 
 } from "../../Utils/api";
 
-
+import { _saveQuestion} from "../../Utils/_DATA"
 import {
   showQuestions,
   addNewQuestion,
@@ -29,7 +29,7 @@ export function handleInitialData() {
 }
 
 // add new question to user
-export function handleSaveQuestion(optionOneText, optionTwoText) {
+/*export function handleSaveQuestion(optionOneText, optionTwoText) {
   return (dispatch, getState) => {
     dispatch(showLoading());
     const { authUser } = getState();
@@ -41,7 +41,7 @@ export function handleSaveQuestion(optionOneText, optionTwoText) {
       .then(() => dispatch(hideLoading()));
   };
 }
-
+*/
 // save answer to user
 export function handleSaveAnswer(info) {
   return (dispatch) => {
@@ -52,18 +52,23 @@ export function handleSaveAnswer(info) {
     });
   };
 }
-/*export function handleSubmitAnswer(data){
-    debugger
+export function handleSaveQuestion(question) {
+  
     return (dispatch) => {
-        dispatch(AnsweredQuestion(data))
         dispatch(showLoading())
-        return _saveQuestionAnswer(data)
-        .then(res => {dispatch(hideLoading())})
-        .catch((e) =>{
-          console.warn('Error in handleSubmitAnswer: ', e)
-          dispatch(AnsweredQuestion(data))
-          dispatch(hideLoading())
-          alert('The was an error on submitting answwer. Try again.')
+        
+        return _saveQuestion(question)
+        .then(ques => {
+        
+            dispatch(addNewQuestion(ques))
+            dispatch(hideLoading())
         })
+        .catch((e) =>{
+           
+            console.warn('Error in handleSaveQuestion: ', e)
+            dispatch(hideLoading())
+            alert('The was an error on submitting question. Try again.')
+          })
+
     }
-}*/
+}

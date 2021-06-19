@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import {Card ,Form ,Button} from "react-bootstrap";
 import {Link , Redirect} from "react-router-dom";
+import {withRouter} from "react-router"
 
 import { handleCreateQuestion } from "../../redux/action/questionaction";
 import { handleSaveQuestion } from "../../redux/action/showactions"
@@ -23,11 +24,21 @@ class NewQuestion extends Component {
     e.preventDefault();
     const { optionOne, optionTwo } = this.state;
 	console.log("option****",optionOne, optionTwo )
-    const {authUser, handleSaveUserQuestion} = this.props;
-    handleSaveUserQuestion(optionOne, optionTwo)
+    const {authUser, handleSaveUserQuestion, dispatch} = this.props;
+      const question = {
+            optionOneText: this.state.optionOne,
+            optionTwoText: this.state.optionTwo,
+            author: authUser
+        }
+    dispatch(handleSaveQuestion (question)).then(() => {
+          
+            this.props.history.push('/home')
+        });;
     
   };
 
+  
+  
   render() {
     const { optionOne, optionTwo } = this.state;
     return (
@@ -80,13 +91,5 @@ function mapStateToProps({ authUser }) {
     authUser
   };
 }
-function mapDispatchToProps(dispatch,history) {
-  return {
-    handleSaveUserQuestion( optionOne, optionTwo ) {
-      dispatch(handleSaveQuestion (optionOne, optionTwo)).then(() => {
-           <Redirect to={"/home"} />
-        });
-    }
-  };
-}
-export default connect(mapStateToProps , mapDispatchToProps)(NewQuestion);
+
+export default withRouter(connect(mapStateToProps )(NewQuestion));

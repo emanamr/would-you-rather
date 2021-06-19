@@ -23,6 +23,12 @@ class Sign extends Component {
     e.preventDefault();
     const {handleAuthUser} = this.props
     handleAuthUser(this.state.selectedUserId);
+    const UrlFrom =
+            this.props.location !== undefined && this.props.location.state !== undefined
+                ? this.props.location.state.from
+                : '/home';
+
+        this.props.history.push(`${UrlFrom}`);
     this.setState({ tohome: true });
     console.log(this.state);
   };
@@ -31,8 +37,8 @@ class Sign extends Component {
     this.setState({ selectedUserId: option.id });
   };
   render() {
-    const { tohome } = this.state;
-    if (tohome) return <Redirect to="/home"></Redirect>;
+    /*const { tohome } = this.state;
+    if (tohome) return <Redirect to="/home"></Redirect>;*/
 
     const { userIds, users , isUserSelect, handleLogin} = this.props; 
 

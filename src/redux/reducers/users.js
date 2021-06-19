@@ -47,16 +47,18 @@ export default function users(state = initial, action) {
       return { ...state, ...action.users };
       
     case ADD_NEW_QUESTION:
-      const que = action.payload.question;
+      
+     
       return {
         ...state,
         [action.payload.author]: {
           ...state[action.payload.author],
-          questions: state[action.payload.author].questions.concat([action.payload.id])
+          questions: {...state[action.payload.author].questions.concat([action.payload.id])}        
         }
       };
+      
     case ANSWERED_QUESTION:
-      const { authUser, queid, answer } = action.payload ;
+      const { authUser, queId, answer } = action.payload ;
       
       return {
         ...state,
@@ -64,7 +66,7 @@ export default function users(state = initial, action) {
           ...state[authUser],
           answers: {
             ...state[authUser].answers,
-            [queid]: answer
+            [action.payload.queId]: answer
           }
         }
       }

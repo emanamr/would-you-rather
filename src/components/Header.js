@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Redirect, NavLink, Link } from "react-router-dom";
+import { Redirect, NavLink, Link ,useHistory} from "react-router-dom";
 import {withRouter} from "react-router"
 
 
@@ -10,6 +10,8 @@ import Navbar from "react-bootstrap/Navbar";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import { authUser, authLogout ,handleUserLogout} from "../redux/action/authactions";
+import PrivateRoute from "../PrivateRoute.js";
+//const history = useHistory();
 
 class Header extends Component {
   state = {
@@ -18,14 +20,17 @@ class Header extends Component {
 
   handleout = () => {
     console.log(this.props);
-    const {handleLogout, } = this.props;
-    //this.setState({ toLogin: true });
+    const {handleLogout, history} = this.props;
+    
+    this.setState({ toLogin: true });
     handleLogout()
+    //history.push("/login");
+    
   };
 	
   render() {
-    /*const { toLogin } = this.state;
-   if (toLogin) return <Redirect to="/login"></Redirect>;*/
+   const { toLogin } = this.state;
+   if (toLogin) return <Redirect to="/login"></Redirect>;
 
     const { authUser, users } = this.props;
 	
@@ -47,10 +52,10 @@ class Header extends Component {
               id="basic-navbar-nav"
               className="justify-content-center"
             >
-              <Nav className="mr-auto">
-                <NavLink to="/home">Home</NavLink>
-                <NavLink to="/add">New Question</NavLink>
-                <NavLink to="/leaderboard">Leader Board</NavLink>
+              <Nav className="mr-auto navbar-link">
+                <NavLink className="link" to="/home">Home</NavLink>
+                <NavLink className="link" to="/add">New Question</NavLink>
+                <NavLink className="link" to="/leaderboard">Leader Board</NavLink>
               </Nav>
             </Navbar.Collapse>
 

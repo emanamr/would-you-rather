@@ -95,7 +95,14 @@ export default function questions(state = {}, action) {
      
       return {
         ...state,
-        [action.payload.id]:action.payload.question
+        [action.payload.id]:action.payload
+        /*{
+          id:action.payload.id,
+          author:action.payload.author,
+          timestamp: action.payload.timestamp,
+          optionOne:action.payload.optionOne ,
+          optionTwo:action.payload.optionTwo				                       
+  }*/
       };
     case ANSWERED_QUESTION:
       const { queId, authUser, answer } = action.payload;
